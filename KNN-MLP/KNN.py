@@ -8,7 +8,7 @@ def loadDataset(filename, split, trainingSet=[] , testSet=[]):
 	    lines = csv.reader(csvfile)
 	    dataset = list(lines)
 	    for x in range(len(dataset)-1):
-	        for y in range(4):
+	        for y in range(12):
 	            dataset[x][y] = float(dataset[x][y])
 	        if random.random() < split:
 	            trainingSet.append(dataset[x])
@@ -52,8 +52,8 @@ def main():
 	#prepare data
 	trainingSet=[]
 	testSet=[]
-	split = 0.20
-	loadDataset('transfusion.data', split, trainingSet, testSet)
+	split = 0.80
+	loadDataset('winequality-red.csv', split, trainingSet, testSet)
 	print ('Train set: ' + repr(len(trainingSet)))
 	print ('Test set: ' + repr(len(testSet)))
 	# generate predictions

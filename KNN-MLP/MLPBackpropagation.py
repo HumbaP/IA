@@ -1,5 +1,3 @@
-# Backprop on the Seeds Dataset
-from random import seed
 from random import randrange
 from random import random
 from csv import reader
@@ -177,8 +175,6 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden):
 		predictions.append(prediction)
 	return(predictions)
 
-# Test Backprop on Seeds dataset
-seed(1)
 # load and prepare data
 filename = 'winequality-red.csv'
 dataset = load_csv(filename)
@@ -190,10 +186,10 @@ str_column_to_int(dataset, len(dataset[0])-1)
 minmax = dataset_minmax(dataset)
 normalize_dataset(dataset, minmax)
 # evaluate algorithm
-n_folds = 10
+n_folds = 5
 l_rate = 0.2
-n_epoch = 1000
-n_hidden = 1
+n_epoch = 500
+n_hidden = 3
 scores = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
 print('Scores: %s' % scores)
 print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
