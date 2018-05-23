@@ -120,6 +120,7 @@ def backward_propagate_error(network, expected):
 				for neuron in network[i + 1]:
 					error += (neuron['weights'][j] * neuron['delta'])
 				errors.append(error)
+
 		else:
 			for j in range(len(layer)):
 				neuron = layer[j]
@@ -142,6 +143,7 @@ def update_weights(network, row, l_rate):
 # Train a network for a fixed number of epochs
 def train_network(network, train, l_rate, n_epoch, n_outputs):
 	for epoch in range(n_epoch):
+		print('Epoch: %i'% epoch)
 		for row in train:
 			outputs = forward_propagate(network, row)
 			expected = [0 for i in range(n_outputs)]
@@ -176,7 +178,7 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden):
 	return(predictions)
 
 # load and prepare data
-filename = 'winequality-red.csv'
+filename = 'transfusion.data'
 dataset = load_csv(filename)
 for i in range(len(dataset[0])-1):
 	str_column_to_float(dataset, i)
@@ -186,10 +188,10 @@ str_column_to_int(dataset, len(dataset[0])-1)
 minmax = dataset_minmax(dataset)
 normalize_dataset(dataset, minmax)
 # evaluate algorithm
-n_folds = 5
+n_folds = 2
 l_rate = 0.2
 n_epoch = 500
-n_hidden = 3
+n_hidden = 1
 scores = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
 print('Scores: %s' % scores)
 print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
