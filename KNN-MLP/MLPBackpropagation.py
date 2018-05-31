@@ -195,7 +195,7 @@ normalize_dataset(dataset, minmax)
 n_folds = 2
 l_rate = 0.2
 n_epoch = 1000
-n_hidden = 15
+n_hidden = 1
 scores = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
 print('Scores: %s' % scores)
 print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
